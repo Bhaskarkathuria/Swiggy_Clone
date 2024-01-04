@@ -1,3 +1,10 @@
+import { useState } from "react";
+
+const logedIn = ()=>{
+  return false
+}
+
+
 const Title = () => (
   <a href="/">
     <img
@@ -8,6 +15,7 @@ const Title = () => (
   </a>
 );
 const HeaderComponent = () => {
+  const [isLogedIn, setIsLogedIn] = useState(false);
   return (
     <div className="header">
       <Title />
@@ -19,6 +27,23 @@ const HeaderComponent = () => {
           <li>Cart</li>
         </ul>
       </div>
+      {isLogedIn ? (
+        <button
+          onClick={() => {
+            setIsLogedIn(false);
+          }}
+        >
+          Logout
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            setIsLogedIn(true);
+          }}
+        >
+          Login
+        </button>
+      )}
     </div>
   );
 };
