@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const logedIn = ()=>{
   return false
@@ -21,9 +22,9 @@ const HeaderComponent = () => {
       <Title />
       <div className="nav-item">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li><Link>Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
           <li>Cart</li>
         </ul>
       </div>

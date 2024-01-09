@@ -3,7 +3,7 @@ import { RestaurantList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer"
-
+import {Link} from "react-router-dom"
 function filterdata(searchText, restaurants) {
   return restaurants.filter((restaurant) =>
     restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -25,12 +25,16 @@ const Body = () => {
     );
 
     const jsondata = await data.json();
+    
+    console.log(
+      jsondata?.data?.cards[2]?.card?.card.gridElements.infoWithStyle?.restaurants
+    );
 
     async function checkJsonData(json) {
       const restaurantsArray = [];
       for (let i = 0; i <= 8; i++) {
         let cheeckedData =
-          json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants[
+          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants[
             i
           ];
 
@@ -38,9 +42,9 @@ const Body = () => {
       }
       return restaurantsArray;
     }
-    console.log(
-      jsondata.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   jsondata.data.cards[3].card.card.gridElements.infoWithStyle.restaurants
+    // );
     const responseData = await checkJsonData(jsondata);
     console.log("resssss", responseData);
     setFilteredRestaurants(responseData);
@@ -72,7 +76,12 @@ const Body = () => {
       <div className="Restaurant-list">
         {filteredRestaurants.map((restaurant) => {
           return (
-            <RestaurantCard key={restaurant?.info?.id} {...restaurant?.info} />
+            <Link
+              to={"/restaurant/" + restaurant?.info?.id}
+              key={restaurant?.info?.id}
+            >
+              <RestaurantCard {...restaurant?.info} />
+            </Link>
           );
         })}
       </div>
