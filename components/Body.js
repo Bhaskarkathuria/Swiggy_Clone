@@ -27,14 +27,14 @@ const Body = () => {
     const jsondata = await data.json();
     
     console.log(
-      jsondata?.data?.cards[2]?.card?.card.gridElements.infoWithStyle?.restaurants
+      "aaaaaa",jsondata?.data
     );
 
     async function checkJsonData(json) {
       const restaurantsArray = [];
       for (let i = 0; i <= 8; i++) {
         let cheeckedData =
-          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants[
+          json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants[
             i
           ];
 
